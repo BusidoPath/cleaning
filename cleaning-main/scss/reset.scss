@@ -1,0 +1,46 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    object-fit: cover;
+}
+
+input,
+button,
+select,
+option,
+textarea {
+    outline: none;
+    font-size: 15px;
+    border: 0;
+    background-color: inherit;
+    font-family: 'Roboto', sans-serif;
+}
+
+textarea {
+    resize: none;
+}

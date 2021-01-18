@@ -7,13 +7,13 @@ const PORT = process.env.PORT || 80
 
 const app = express()
 
-app.use(express.static(path.resolve(__dirname, 'frontend')))
+app.use(express.static(path.resolve(__dirname, 'cleaning-main')))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, 'frontend', 'index.html'))
+  res.status(200).sendFile(path.resolve(__dirname, 'index.html'))
 })
 
 app.post('/sendform', async (req, res) => {

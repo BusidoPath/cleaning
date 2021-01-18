@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scss/constants.css">
+    <link rel="stylesheet" href="scss/style.css">
+    <link rel="stylesheet" href="scss/reset.css">
+    <link rel="stylesheet" href="scss/popup.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <header class="fixed main-header">
+        <div class="header-fixed">
+          <div class="container">
+             <div class="header-flex">
+                 <div class="logo"><img src="img/logo.png" alt=""></div>
+                   <ul class="header-menu">
+                       <li class="menu-item active">
+                           <a href="#">Главная</a>
+                       </li>
+                       <li class="menu-item">
+                           <a href="#">Услуги</a>
+                       </li>
+                       <li class="menu-item">
+                           <a href="#">Цены</a>
+                       </li>
+                       <li class="menu-item">
+                           <a href="#">Статьи</a>
+                       </li>
+                       <li class="menu-item">
+                           <a href="#">Контакты</a>
+                       </li>
+                   </ul>
+                 <a href="tel:+1234567890" class="phone">+7 (996) 397-86-88</a>
+             </div>
+          </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="video-bg">
+            <div class="intro">
+                <div class="intro-media">
+                    <video class="intro-media-video" src="img/header-bg.mp4" autoplay muted loop></video>
+                </div>
+                <div class="intro-content">
+                        <h1>УБОРКА КВАРТИР: КАК ОСУЩЕСТВЛЯЕТСЯ, <br>
+                            ПРАВИЛА ЗАКАЗА И ПЛЮСЫ УСЛУГИ</h1>
+                            <div class="actions">
+                                <button class="button inherit">оставить заявку</button>
+                                <button class="button fill">наши цены</button>
+                            </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="text">
+                        <p>Уборка квартиры и постоянное поддержание ее в чистоте – довольно утомительное занятие, которое требует большого количества времени и сил.</p>
+                        <p>Современный ритм жизни диктует свои правила, и зачастую бывает непросто отложить дела и заняться уборкой жилья, особенно генеральной. В итоге она постоянно откладывается и переносится на неопределенный срок.</p>
+                        <p>В таких случаях практичнее заказать уборку у профессионалов, что позволит сэкономить время, и потратить его на более важные дела.</p>
+                        <button class="button red">Наши цены</button>
+                    </div>
+                    <div class="video">
+                        <img src="./img/clean.jpg" alt="clean">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="short-about">
+            <div class="container">
+                <h3>Коротко о нас и как заказать уборку</h3>
+                <p>Рады приветствовать вас на нашем сайте, и хотим немного рассказать о предоставляемом сервисе. Мы предоставляем качественные профессиональные услуги уборки на протяжении нескольких лет и прекрасно знаем, как создать идеальную чистоту в доме.</p>
+                <p>«КлинОкей» – современная клининговая компания, занимающая одну из передовых позиций на современном рынке. Чтобы заказать уборку – оставьте заявку на сайте или позвоните по номеру телефона.</p>
+                <button class="button blue">Оставить заявку</button>
+            </div>
+        </section>
+
+        <section class="kinds" id="kinds">
+            <div class="container">
+            <h3>Виды уборок</h3>
+            <div class="kinds-main">
+                <div class="kinds-left">
+                    <div :class="{ 'kinds-left-item': true, 'active': cleaningType === 'maintenance' }" @click="cleaningType = 'maintenance'">
+                        <div class="kinds-left-img"><img src="img/support-clean.svg" alt=""></div>
+                        <p>поддерживающая уборка</p>
+                    </div>
+                    <div :class="{ 'kinds-left-item': true, 'active': cleaningType === 'complex' }" @click="cleaningType = 'complex'">
+                        <div class="kinds-left-img"><img class="complex-svg" src="img/complex.svg" alt=""></div>
+                        <p>комплексная уборка</p>
+                    </div>
+                    <div :class="{ 'kinds-left-item': true, 'active': cleaningType === 'spring' }" @click="cleaningType = 'spring'">
+                        <div class="kinds-left-img"><img class="general-svg" src="img/general.svg" alt=""></div>
+                        <p>генеральная уборка</p>
+                    </div>
+                </div>
+                <div class="kinds-right">
+                    <div class="kinds-right-flex">
+                        <p :class="{ 'kinds-right-item': true, 'active': cleaningPlace === 'flat' }" @click="cleaningPlace = 'flat'">во всей квартире</p>
+                        <p :class="{ 'kinds-right-item': true, 'active': cleaningPlace === 'kitchen' }" @click="cleaningPlace = 'kitchen'">на кухне</p>
+                        <p :class="{ 'kinds-right-item': true, 'active': cleaningPlace === 'bathroom' }" @click="cleaningPlace = 'bathroom'">в ванной</p>
+                        <p :class="{ 'kinds-right-item': true, 'active': cleaningPlace === 'clothes' }" @click="cleaningPlace = 'clothes'">ваши вещи</p>
+                    </div>
+                    <div class="kinds-right-grid">
+                        <div class="kind-grid-item" v-for="text in currentList" :key="text">
+                            <img  src="img/drop.svg" alt="">
+                            <p>{{ text }}</p>
+                        </div>
+                    </div>
+                    <button class="button white">от {{ currentCleaning.price }} руб.</button>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <section class="plus">
+            <div class="container">
+                <h4>Профессиональная уборка квартиры, цена и другие плюсы</h4>
+                <p>Обращаясь в клининговую фирму, основное, что интересует клиента цена на уборку квартир. Наши принцип – профессионализм и доступность. В нашем прайсе выгодные цены на любой вид услуг.</p>
+                <p class="our-pluses">Наши плюсы:</p>
+                <div class="plus-grid-main">
+                    <div class="plus-grid-item">
+                        <img class="plus-svg" src="img/help-in-choose.svg" alt="help-in-cloose">
+                        <h3>Помощь в выборе услуг</h3>
+                        <p>Наши сотрудники готовы прийти на выручку, подобрать наиболее оптимальный набор необходимых услуг;</p>
+                    </div>
+                    <div class="plus-grid-item">
+                        <img class="plus-svg" src="img/quality.svg" alt="quality">
+                        <h3>Качественное выполнение</h3>
+                        <p>Выполняется в строгом соответствии с чек-листом, в котором работы прописываются заранее;</p>
+                    </div>
+                    <div class="plus-grid-item">
+                        <img class="plus-svg" src="img/high.svg" alt="high">
+                        <h3>Высокая надежность</h3>
+                        <p>При устройстве на работу каждый наш сотрудник проходит строгую проверку и обучение, у нас работает самый опытный и трудолюбивый персонал;</p>
+                    </div>
+                    <div class="plus-grid-item">
+                        <img class="plus-svg" src="img/price.svg" alt="price">
+                        <h3>Разумная цена</h3>
+                        <p>У нас предлагается доступная стоимость, которая оговаривается заранее и не меняется по ходу выполнения работ (без изменения их объема);</p>
+                    </div>
+                    <div class="plus-grid-item">
+                        <img class="plus-svg" src="img/comfort.svg" alt="comfort">
+                        <h3>Удобный сервис</h3>
+                        <p>У нас можно заказать уборку за несколько минут, используя сайт или просто позвонив по телефону, при необходимости наши сотрудники выедут к вам уже через пару часов после обращения.</p>
+                    </div>
+                    <div class="plus-grid-img">
+                        <img src="img/group.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="steps">
+        <div class="container">
+            <p>Уже после первого обращения будут учтены требования, и вам не придется проводить инструктаж повторно. Мы несем полную ответственность за все, что происходит во время процесса и гарантируем сохранность имущества. Нам доверят сотни клиентов, и мы это ценим, поэтому стремимся делать свою работу максимально качественно. Поэтому к нам обращаются снова и снова!</p>
+            <h2>Этапы сотрудничества</h2>
+            <div class="steps-flex">
+                <div class="steps-flex-items">
+                    <div class="steps-items-img"><img src="img/phone.svg" alt=""></div>
+                    <p class="n-step">1 шаг</p>
+                    <p class="about-step">ЗАЯВКА ИЛИ ЗВОНОК</p>
+                </div>
+                <div class="steps-flex-items">
+                    <div class="steps-items-img">
+                        <img src="img/message.svg" alt="">
+                    </div>
+                    <p class="n-step">2 шаг</p>
+                    <p class="about-step">ЛИЧНАЯ ВСТРЕЧА</p>
+                </div>
+                <div class="steps-flex-items">
+                    <div class="steps-items-img"><img src="img/like.svg" alt=""></div>
+                    <p class="n-step">3 шаг</p>
+                    <p class="about-step">ВАША ПРОБЛЕМА РЕШЕНА!</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="vacuum">
+    <div class="container">
+        <div class="vacuum-flex">
+            <div class="vacuum-flex-item">
+                <h2>230</h2>
+
+                <p>Проектов</p>
+            </div>
+            <div class="vacuum-flex-item">
+                <h2>20</h2>
+                <p>Клинеров</p>
+            </div>
+            <div class="vacuum-flex-item">
+                <h2>7</h2>
+                <p>Лет опыта</p>
+            </div>
+            <div class="vacuum-flex-item">
+                <h2>14 355 м<sup>2</sup></h2>
+                <p>Почистили</p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="table">
+        <div class="container">
+        <h1 class="table-h1">цены на уборку квартир в Петербурге и Лен.Области</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Услуга</th>
+                    <th>до 45 м<sup>2</sup></th>
+                    <th>45-60 м<sup>2</sup></th>
+                    <th>61-80 м<sup>2</sup></th>
+                    <th>81-100 м<sup>2</sup></th>
+                    <th>101-200 м<sup>2</sup></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Поддерживающая <br> уборка квартиры	</td>
+                    <td>3 000 руб</td>
+                    <td>3 800 руб</td>
+                    <td>4 500 руб</td>
+                    <td>5 400 руб</td>
+                    <td>50 руб./м<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td>Комплексная <br> уборка квартиры</td>
+                    <td>4 500 руб</td>
+                    <td>5 000 руб</td>
+                    <td>6 000 руб</td>
+                    <td>7 000 руб</td>
+                    <td>70-80 руб./м<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td>Генеральная <br> уборка квартиры</td>
+                    <td>5 500 руб</td>
+                    <td>6 500 руб</td>
+                    <td>7 500 руб</td>
+                    <td>8 500 руб</td>
+                    <td>85-95 руб./м<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td>Уборка квартир<br>после ремонта</td>
+                    <td>6 000 руб</td>
+                    <td>7 000 руб</td>
+                    <td>8 000 руб</td>
+                    <td>9 000 руб</td>
+                    <td>85-95 руб./м<sup>2</sup></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+
+    <section class="last">
+        <div class="container">
+            <div class="last-flex">
+                <div class="last-left">
+                    <h2>Услуги уборки: что включают в себя?</h2>
+                    <p>Профессиональные услуги уборки квартир в Москве с каждым днем становятся актуальнее, и в этом нет ничего удивительного. Ведь намного лучше провести свободное время с семьей, потратить его на отдых или более важные дела, чем заниматься утомительной работой по дому.</p>
+                    <div class="last-drop">
+                        <div class="last-drop-item">
+                            <img src="img/drop.svg" alt="">
+                            <p> <b> Комплексная</b>: подразумевает полную приборку дома, начиная от санузлов, заканчивая спальней, рекомендуется при необходимости уборки в запущенных и грязных квартирах, особенно после аренды;</p>
+                        </div>
+                        <div class="last-drop-item">
+                            <img src="img/drop.svg" alt="">
+                            <p><b>Поддерживающая</b>: выполняется ежедневно или еженедельно, позволяет сохранять идеальный порядок и чистоту в доме;</p>
+                        </div>
+                        <div class="last-drop-item">
+                            <img src="img/drop.svg" alt="">
+                            <p><b>Генеральная</b>: проводится 1 раз в месяц либо в квартал по желанию клиента, включает тщательное протирание всех поверхностей и удаление сложных загрязнений в санузлах и на кухне.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="last-right">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer>
+        <div class="main-header">
+            <div class="header-fixed">
+                <div class="container">
+                    <div class="header-flex">
+                        <div class="logo"><img src="img/logo.png" alt=""></div>
+                        <ul class="header-menu">
+                           <li class="menu-item active">
+                               <a href="#">Главная</a>
+                           </li>
+                           <li class="menu-item">
+                               <a href="#">Услуги</a>
+                           </li>
+                           <li class="menu-item">
+                               <a href="#">Цены</a>
+                           </li>
+                           <li class="menu-item">
+                               <a href="#">Статьи</a>
+                           </li>
+                           <li class="menu-item">
+                               <a href="#">Контакты</a>
+                           </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="popup-overlay hidden">
+        <div class="order-form">
+            <div id="form-block">
+                <h3 class="title">Оставить заявку</h3>
+                <label>
+                    <input class="form-input" id="form-name" type="text" placeholder="Имя">
+                </label>
+                <label>
+                    <input class="form-input" id="form-phone" type="tel" placeholder="Номер телефона">
+                </label>
+                <label>
+                    <textarea placeholder="Ваш комментарий" id="form-comment"></textarea>
+                </label>
+                <button id="send" class="popup-button">Отправить</button>
+            </div>
+            <div id="success-form" style="display: none">
+                <h3 class="title">Ваша заявка отправлена!</h3>
+                <p class="text">Ваша заявка успешно сформирована. Скоро с вами свяжутся наши специалисты.</p>
+                <button class="popup-button close-popup" id="">Закрыть</button>
+            </div>
+            <div id="error-form" style="display: none">
+                <h3 class="title">Произошла ошибка!</h3>
+                <p class="text">Возможно вы ввели некорректные данные, попробуйте оставить заявку еще раз.</p>
+                <div class="form-actions">
+                    <button class="close-button close-popup">Закрыть</button>
+                    <button class="popup-button" id="retry">Попробовать заново</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/js.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/form.js"></script>
+</body>
+</html>
